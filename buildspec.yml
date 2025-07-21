@@ -3,18 +3,16 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing dependencies...
-  pre_build:
-    commands:
-      - echo start prebuild and end it    
+      - echo "Nothing to install for static site"
   build:
     commands:
-      - echo Running buuild
+      - echo "No build step needed for static HTML/CSS"
   post_build:
     commands:
-      - echo Build completed successfully.
+      - echo "Uploading static site to S3..."
+      - aws s3 sync . s3://doctor-website --delete
 
 artifacts:
   files:
-    - "**/*"
-  base-directory: .  # Specify where artifacts are stored
+    - '**/*'
+  base-directory: .
